@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  PROJECT_NAME:
+    build: ./docker/main/
+    volumes:
+      - .:/app
+    ports:
+      - "8080:3000"
+    image: PROJECT_NAME:latest
