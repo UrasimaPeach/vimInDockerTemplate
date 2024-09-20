@@ -33,7 +33,7 @@ VSCodeを使いたい人はRemote Desktopなどを使うと良いでしょう。
 以下のコマンドでコンテナを立ち上げることで実行環境が出来上がります。
 
 ```
-docker-compoose build
+docker compoose build
 ```
 
 ### コンテナの実行
@@ -52,6 +52,12 @@ docker compose up -d
 ./scripts/ad.sh
 ```
 
+最初にコンテナにアクセスした時、コンテナ内でvimの設定ファイルの初期化を行う。
+
+```
+./scripts/init_in_container.sh
+```
+
 ### コンテナの終了
 
 以下のコマンドで開発環境兼実行環境のデーモンを落とします。
@@ -60,20 +66,12 @@ docker compose up -d
 dockerk-compose down
 ```
 
-
 ### 開発環境内コマンド
 
 #### 開発環境内でvimを使う。
 
 ```
 vim src/example.tsx
-```
-
-開発用にいくつかのプラグインをPlugで入れるようvimrcに書いてあるので:PlugInstallする
-
-```
-:PlugInstall
-:q
 ```
 
 # LISCENCE

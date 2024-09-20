@@ -4,6 +4,8 @@ services:
     build: ./docker/main/
     volumes:
       - .:/app
+      - ./vim:/root/.vim
+      - ./vimrc:/root/.vimrc
     ports:
       - "8080:3000"
     image: PROJECT_NAME:latest

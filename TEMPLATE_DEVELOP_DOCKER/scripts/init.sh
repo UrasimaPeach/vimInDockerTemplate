@@ -29,6 +29,8 @@ sed -i -e "s/PROJECT_NAME/${PROJECT_NAME}/g" ${here}/ad.sh
 sed -i -e "s/PROJECT_NAME/${PROJECT_NAME}/g" ${here}/../docker-compose.yml
 sed -i -e "s/FIRST_AUTHOR_NAME/${USERNAME_FIRST}/g" ${here}/../LICENSE
 sed -i -e "s/FIRST_AUTHOR_NAME/${USERNAME_FIRST}/g" ${here}/../README.md
+mkdir -p vim
+cp docker/main/vimrc.example vimrc
 
 cd ${here}/..
 rm -rf .git
@@ -39,5 +41,6 @@ git config --local user.email ${EMAIL_FIRST}
 chmod 644 ${0}
 git add .
 git commit -m "init"
+chmod 755 ${here}/init_in_container.sh
 
 fi
