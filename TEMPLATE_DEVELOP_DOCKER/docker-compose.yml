@@ -7,5 +7,5 @@ services:
       - ./vim:/root/.vim
       - ./vimrc:/root/.vimrc
     ports:
-      - "8080:3000"
+      - 3000:8080
     image: PROJECT_NAME:latest
