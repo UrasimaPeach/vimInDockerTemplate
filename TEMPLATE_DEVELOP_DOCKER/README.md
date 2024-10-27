@@ -63,7 +63,7 @@ docker compose up -d
 以下のコマンドで開発環境兼実行環境のデーモンを落とします。
 
 ```
-dockerk-compose down
+docker-compose down
 ```
 
 ### 開発環境内コマンド
