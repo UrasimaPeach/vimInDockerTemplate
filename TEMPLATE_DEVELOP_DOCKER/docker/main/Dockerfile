@@ -14,6 +14,6 @@ RUN apt update && \
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  && \
   nvm install $NODE_VERSION
-EXPOSE 8080
+EXPOSE 3000
 VOLUME /app
 CMD ["tail", "-F", "/dev/null"]
