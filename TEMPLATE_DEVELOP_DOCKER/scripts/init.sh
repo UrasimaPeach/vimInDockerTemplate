@@ -25,10 +25,17 @@ echo "first email is empty"
 
 else
 
-sed -i -e "s/PROJECT_NAME/${PROJECT_NAME}/g" ${here}/ad.sh
-sed -i -e "s/PROJECT_NAME/${PROJECT_NAME}/g" ${here}/../docker-compose.yml
-sed -i -e "s/FIRST_AUTHOR_NAME/${USERNAME_FIRST}/g" ${here}/../LICENSE
-sed -i -e "s/FIRST_AUTHOR_NAME/${USERNAME_FIRST}/g" ${here}/../README.md
+vidteReplaceTargetList=`echo "${here}/ad.sh
+${here}/../docker-compose.yml
+${here}/../LICENSE
+${here}/../README.md"`
+for file in ${vidteReplaceTargetList}
+  do
+echo ${file}
+sed -i -e "s/PROJECT_NAME/${PROJECT_NAME}/g" ${file}
+sed -i -e "s/FIRST_AUTHOR_NAME/${USERNAME_FIRST}/g" ${file}
+  done
+
 mkdir -p vim
 cp docker/main/vimrc.example vimrc
 
