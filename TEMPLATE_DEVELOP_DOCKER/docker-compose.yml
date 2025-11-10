@@ -16,3 +16,7 @@ services:
       - /etc/passwd:/etc/passwd:ro # 現在のログインユーザーを使ってシェルを実行するためにpasswdをROで使用
       - /etc/group:/etc/group:ro # 現在のログインユーザーを使ってシェルを実行するためにgroupをROで使用
     image: PROJECT_NAME:latest
+    tty: true
+    privileged: true
+    stdin_open: true
+    network_mode: host

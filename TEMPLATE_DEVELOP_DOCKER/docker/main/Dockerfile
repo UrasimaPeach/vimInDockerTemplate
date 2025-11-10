@@ -28,4 +28,5 @@ VOLUME /home/${USERNAME}/.vimrc
 RUN chown -R ${UID}:${GID} /home/${USERNAME}
 EXPOSE 3000
 WORKDIR /home/${USERNAME}/app
-CMD /etc/init.d/dbus start && tail -F /dev/null
+CMD tail -F /dev/null
+
