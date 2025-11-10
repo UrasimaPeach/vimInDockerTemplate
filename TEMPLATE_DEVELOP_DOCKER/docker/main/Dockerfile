@@ -1,19 +1,31 @@
-FROM ubuntu:22.04
-WORKDIR /app
+FROM ubuntu:24.04
 ENV LANG=C.UTF-8
 ENV LANGUAGE=en_US
 ENV NODE_VERSION=20
-VOLUME /app
-VOLUME /root/.vim
-VOLUME /root/.vimrc
+ENV NVM_VERSION=v0.40.3
+ENV TZ=Asia/Tokyo
+
 RUN apt update && \
   apt upgrade -y && \
-  apt install -y curl vim git&& \
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && \
-  export NVM_DIR="$HOME/.nvm" && \
+  apt install -y curl vim git
+
+ARG USERNAME
+ARG UID
+ARG GID
+RUN useradd -m -s /bin/bash ${USERNAME} && \
+  echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+  mkdir -p /home/${USERNAME}/app
+USER ${USERNAME}
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh | bash && \
+  export NVM_DIR="/home/${USERNAME}/.nvm" && \
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  && \
   nvm install $NODE_VERSION
+USER root
+VOLUME /home/${USERNAME}/app
+VOLUME /home/${USERNAME}/.vim
+VOLUME /home/${USERNAME}/.vimrc
+RUN chown -R ${UID}:${GID} /home/${USERNAME}
 EXPOSE 3000
-VOLUME /app
-CMD ["tail", "-F", "/dev/null"]
+WORKDIR /home/${USERNAME}/app
+CMD /etc/init.d/dbus start && tail -F /dev/null

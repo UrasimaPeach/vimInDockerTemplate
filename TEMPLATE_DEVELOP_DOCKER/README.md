@@ -30,10 +30,10 @@ VSCodeを使いたい人はRemote Desktopなどを使うと良いでしょう。
 
 ### コンテナのビルド
 
-以下のコマンドでコンテナを立ち上げることで実行環境が出来上がります。
+以下のコマンドでコンテナを立ち上げることでユーザー用の実行環境が出来上がります。
 
 ```
-docker compoose build
+docker compose build --build-arg USERNAME=`whoami` --build-arg UID=`id -u` --build-arg GID=`id -g`
 ```
 
 ### コンテナの実行
@@ -72,6 +72,14 @@ docker-compose down
 
 ```
 vim src/example.tsx
+```
+
+#### 依存ライブラリのライセンスを出力する
+
+```
+cd ${PROJECT_NAME}
+npm install -g yarn # 基本的にnpmを使う想定のコンテナだが、ライセンスを出力するために一時的にyarnをコンテナにインストール
+yarn licenses generate-disclaimer > public/THIRD_PARTY_LICENSES.txt
 ```
 
 # LISCENCE

@@ -1,11 +1,18 @@
 version: "3.9"
 services:
   PROJECT_NAME:
-    build: ./docker/main/
-    volumes:
-      - .:/app
-      - ./vim:/root/.vim
-      - ./vimrc:/root/.vimrc
+    build:
+      context: ./docker/main/
+      args:
+        - GID
+        - UID
+        - USERNAME
     ports:
       - 8080:3000
+    volumes:
+      - .:/home/${USERNAME}/app
+      - ./vim:/home/${USERNAME}/.vim
+      - ./vimrc:/home/${USERNAME}/.vimrc
+      - /etc/passwd:/etc/passwd:ro # 現在のログインユーザーを使ってシェルを実行するためにpasswdをROで使用
+      - /etc/group:/etc/group:ro # 現在のログインユーザーを使ってシェルを実行するためにgroupをROで使用
     image: PROJECT_NAME:latest

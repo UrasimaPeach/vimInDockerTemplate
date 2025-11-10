@@ -9,8 +9,6 @@ PROJECT_NAME= # dockerのコンテナ名になるので大文字禁止
 USERNAME_FIRST=
 EMAIL_FIRST=
 
-isEmptyName="${PROJECT_NAME}${USERNAME_FIRST}${EMAIL_FIRST}"
-
 if [ "" = "${PROJECT_NAME}" ];then
 
 echo "project name is empty"
@@ -25,11 +23,11 @@ echo "first email is empty"
 
 else
 
-vidteReplaceTargetList=`echo "${here}/ad.sh
+vidtReplaceTargetList=`echo "${here}/ad.sh
 ${here}/../docker-compose.yml
 ${here}/../LICENSE
 ${here}/../README.md"`
-for file in ${vidteReplaceTargetList}
+for file in ${vidtReplaceTargetList}
   do
 echo ${file}
 sed -i -e "s/PROJECT_NAME/${PROJECT_NAME}/g" ${file}

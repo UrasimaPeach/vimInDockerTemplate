@@ -1,3 +1,5 @@
 #!/bin/sh
 
-docker compose exec PROJECT_NAME bash
+USERID=`id -u`
+GROUPID=`id -g`
+docker compose exec -u "${USERID}:${GROUPID}" PROJECT_NAME bash
