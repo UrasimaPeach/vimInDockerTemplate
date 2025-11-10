@@ -1,6 +1,7 @@
 # vimInDockerTemplate
 
 dockerの中でvimを使う環境を構築するためのテンプレートです。
+nodejsを使うことを想定しており、ホストOSの3000ポートでアクセスするとゲストOSの8080ポートにつながるようにDockerfileとdocker-compose.ymlが書いてあります。
 
 # Requirements
 
