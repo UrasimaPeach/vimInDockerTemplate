@@ -1,12 +1,16 @@
 version: "3.9"
 services:
   PROJECT_NAME:
+    environment:
+      - USERNAME=$USERNAME
+      - GID=$GID
+      - UID=$UID
     build:
       context: ./docker/main/
       args:
-        - GID
-        - UID
-        - USERNAME
+        - GID=$GID
+        - UID=$UID
+        - USERNAME=$USERNAME
     ports:
       - 8080:3000
     volumes:
