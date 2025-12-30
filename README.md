@@ -20,6 +20,7 @@ dockerのユーザーとして自身を追加することで、rootでないユ�
 下記のコマンドを使用してください。
 
 ```
+sudo groupadd docker
 sudo usermod -aG docker `whoami`;grep docker /etc/group
 ```
 
