@@ -14,7 +14,13 @@ docker, sh
 ## 開発環境
 
 このプロダクトではdockerを使って開発と動作確認が行われます。
-リポジトリのルートディレクトリは開発環境内でマウントしているので、root権限で実行すれば通常通りソースコードの編集などの作業が可能です。
+リポジトリのルートディレクトリは開発環境内でマウントしているので、下記のコマンドでユーザーグループに追加したあと再起動することでユーザーにdockerコンテナへの実行権限を与えてください。
+
+```
+sudo groupadd docker
+sudo usermod -aG docker `whoami`;grep docker /etc/group
+```
+
 devContainer等使うほうが行儀がいいと思いますが、管理人はVSCodeよりもvimを使いたいので開発環境内コマンドでvimを使って開発を進めています。
 VSCodeを使いたい人はRemote Desktopなどを使うと良いでしょう。(その場合は追加のymlファイルなどPRくださればレビューします。)
 
@@ -34,6 +40,7 @@ VSCodeを使いたい人はRemote Desktopなどを使うと良いでしょう。
 
 ```
 echo "USERNAME=`whoami`" > ./.build_env;echo "UID=`id -u`" >> ./.build_env;echo "GID=`id -g`" >> ./.build_env
+cat ./.build_env >> .env
 docker compose --env-file ./.build_env build
 ```
 

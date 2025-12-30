@@ -1,3 +1,4 @@
 vim
 vimrc
 .build_env
+.env
