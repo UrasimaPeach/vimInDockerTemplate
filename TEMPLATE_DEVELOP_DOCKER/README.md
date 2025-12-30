@@ -49,7 +49,7 @@ docker compose --env-file ./.build_env build
 以下のコマンドで開発環境兼実行環境をデーモンとして実行します。
 
 ```
-docker compose --env-file ./.build_env up -d
+docker compose up -d
 ```
 
 ### コンテナへのアクセス
